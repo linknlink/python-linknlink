@@ -21,6 +21,7 @@ SUPPORTED_TYPES = {
     },
     eremote: {
         0xAC99: ("eRemote", "LinknLink"),
+        0xAC90: ("eRemote HA", "LinknLink"),
     },
 }
 
@@ -48,7 +49,15 @@ def gendevice(
             manufacturer=manufacturer,
             is_locked=is_locked,
         )
-    return Device(host, mac, dev_type, name=name, model=model, manufacturer=manufacturer, is_locked=is_locked)
+    return Device(
+        host,
+        mac,
+        dev_type,
+        name=name,
+        model=f"Unknown ({hex(dev_type)})",
+        manufacturer="LinknLink",
+        is_locked=is_locked,
+    )
 
 
 def hello(
